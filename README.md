@@ -2,6 +2,8 @@
 
 Minesweeper game made in java.
 
+![](images/Screenshot.png)
+
 There are many things to do with the code, feel free to contribute!
 
 \*Feel free to use it in your own project!\*
