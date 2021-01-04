@@ -1,5 +1,8 @@
+package controller;
+
 import exception.IllegalNumberException;
 import model.Board;
+import model.GameStates;
 import model.difficulty.Medium;
 
 import java.io.IOException;
@@ -21,7 +24,7 @@ public class GameDemoNG {
          * If the gameState == 1 --> Playing the game
          * If the gameState == 2 --> Won the game
          * */
-        int gameState = 1;
+        int gameState = GameStates.PLAYING.state();
 
         do {
             System.out.println("MAX MINES: " + MAX_MINES);
@@ -53,12 +56,12 @@ public class GameDemoNG {
 
                 // verify if the cell is a bomb --> lost the game
                 if (board.getMatrix()[i][j].isBomb()) {
-                    gameState = 0;
+                    gameState = GameStates.LOST.state();
                 }
 
                 // Verify if all cells are visible --> won the game
                 if (remainingCells == 0) {
-                    gameState = 2;
+                    gameState = GameStates.WON.state();
                 }
             } catch (IllegalNumberException e) {
                 e.printStackTrace();
@@ -66,13 +69,13 @@ public class GameDemoNG {
 
             clearConsole();
 
-        } while (gameState == 1);
+        } while (gameState == GameStates.PLAYING.state());
 
         System.out.println("MAX MINES: " + MAX_MINES);
         System.out.println("REMAINING CELLS: " + remainingCells);
         board.printMatrix();
 
-        if (gameState == 0) {
+        if (gameState == GameStates.LOST.state()) {
             System.out.println("You lost, try again!");
         } else {
             System.out.println("You won, congratulations!");
