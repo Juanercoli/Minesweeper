@@ -2,12 +2,15 @@
 
 Minesweeper game made in java.
 
-## Information
-[Wikipedia](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
-
 There are many things to do with the code, feel free to contribute!
 
 \*Feel free to use it in your own project!\*
+
+## Information
+
+For more information view this wikipedia article:
+
+[Wikipedia](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
 
 ## To-do
 
