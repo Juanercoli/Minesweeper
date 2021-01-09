@@ -12,6 +12,7 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 /**
  * Represents the frame of the game
@@ -31,6 +32,7 @@ public class MainFrame extends JFrame {
 
     private int remainingCells;
     private boolean touchedBomb;
+    private boolean firstMove = false;
 
     public MainFrame(Difficulty difficulty) {
 
@@ -124,11 +126,16 @@ public class MainFrame extends JFrame {
                 int finalJ = j;
 
                 buttons[i][j].addMouseListener(new MouseAdapter() {
+
                     @Override
                     public void mousePressed(MouseEvent e) {
 
                         if (e.getButton() == MouseEvent.BUTTON1) {
                             try {
+                                if (!firstMove) {
+                                    verifyFirstBomb(finalI, finalJ);
+                                    firstMove = true;
+                                }
                                 if (board.getMatrix()[finalI][finalJ].getState() != 2) {
                                     remainingCells -= board.discoverCell(finalI, finalJ, false);
                                     if (board.getMatrix()[finalI][finalJ].isBomb())
@@ -146,6 +153,20 @@ public class MainFrame extends JFrame {
                             }
                         }
 
+                    }
+
+                    private void verifyFirstBomb(int i, int j) {
+                        Random random = new Random();
+                        if (board.getMatrix()[i][j].isBomb()) {
+                            while (board.getMatrix()[i][j].isBomb()) {
+                                board.getMatrix()[i][j].setValue(0);
+
+                                i = random.nextInt(matrix.length);
+                                j = random.nextInt(matrix.length);
+                            }
+                            board.getMatrix()[i][j] = new Cell(1, -1);
+                            board.calculateMines();
+                        }
                     }
                 });
             }

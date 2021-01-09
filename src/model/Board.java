@@ -60,14 +60,14 @@ public class Board {
                 column = random.nextInt(matrix.length);
             }
 
-            this.matrix[row][column] = new Cell(0, -1);
+            this.matrix[row][column] = new Cell(1, -1);
         }
 
         // While there is a cell that isn't a bomb we create a new Cell
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 if(this.matrix[i][j] == null) {
-                    this.matrix[i][j] = new Cell(0, 0);
+                    this.matrix[i][j] = new Cell(1, 0);
                 }
             }
         }
@@ -111,7 +111,7 @@ public class Board {
      *       -   -
      *       - - -
      */
-    private void calculateMines() {
+    public void calculateMines() {
         boolean isValid;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
