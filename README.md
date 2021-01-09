@@ -17,11 +17,12 @@ For more information view this wikipedia article:
 ## To-do
 
 ```fix
-On first click (if there's a mine) we should move that mine to a random corner.
+~On first click (if there's a mine) we should move that mine to a random corner.~ --> DONE
 Put icons on buttons.
 Put a scoreboard.
 Put the emoji for reactions.
 Make a better-looking UI.
+Optimize code.
 ```
 
 ## Contributing
